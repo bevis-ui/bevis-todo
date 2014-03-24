@@ -1,0 +1,20 @@
+.todo-list{
+
+    background: #fff;
+    border-top: 1px dotted #adadad;
+
+    // Чтобы быть поверх подвального before
+    position: relative;
+    z-index: 2;
+
+    &__toggle-all {
+        position: absolute;
+        top: -40px;
+        left: -7px;
+
+        width: 60px;
+        height: 39px;
+
+        transform: rotate(90deg);
+    }
+}

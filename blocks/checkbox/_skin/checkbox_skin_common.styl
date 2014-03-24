@@ -1,0 +1,38 @@
+checkbox_skin_common() {
+    width: 35px;
+    height: 35px;
+    margin: 0 0 0 13px;
+    cursor: pointer;
+
+    &__control {
+        border: none;
+        background: none;
+        text-align: center;
+
+        outline: none;
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+
+
+    &::before {
+        content: '✔';
+        font-size: 20px;
+
+        line-height: 43px;
+
+        color: #d9d9d9;
+        text-shadow: 0 -1px 0 #bfbfbf;
+    }
+
+    &:hover::before,
+    &._checked::before {
+        position: relative;
+        bottom: 1px;
+
+        color: #85ada7;
+        text-shadow: 0 1px 0 #669991;
+    }
+}

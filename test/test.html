@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tests</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="mocha.css" />
+
+        <script src="mocha.js"></script>
+        <script src="chai.js"></script>
+        <script src="sinon.js"></script>
+
+        <script>
+            // phantomjs <2.0 hasn't Function.prototype.bind
+            // see https://github.com/ariya/phantomjs/issues/10522
+            (function () {
+                if (!Function.prototype.bind) {
+                    var slice = Array.prototype.slice;
+                    Function.prototype.bind = function (ctx) {
+                        var fn = this;
+                        var args = slice.call(arguments, 1);
+                        return function () {
+                            return fn.apply(ctx, args.concat(slice.call(arguments)));
+                        };
+                    };
+                }
+            }());
+        </script>
+        <script src="test.js"></script>
+        <script src="test.test.js"></script>
+
+        <script>
+            mocha.setup('bdd');
+            // ymaps removes jsonp callbacks after timeout
+            mocha.globals(['jsonp_yandex_coverage__*']);
+            chai.Assertion.includeStack = true;
+
+            modules.define('should', function (provide) {
+                provide(chai.should());
+            });
+
+            modules.define('sinon', function (provide) {
+                provide(sinon);
+            });
+
+            modules.require(['should'], function () {
+                modules.require(['test'], function () {
+                    if (window.mochaPhantomJS) {
+                        mochaPhantomJS.run();
+                    } else {
+                        mocha.run();
+                    }
+                });
+            });
+
+            // resolve test dependency if tests not found
+            modules.define('test', function (provide) {
+                provide();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mocha"></div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+.todo-window {
+    width: 550px;
+    margin: 130px auto 40px;
+
+    position: relative;
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid #ccc;
+
+
+    &::before {
+        content: '';
+        border-left: 1px solid #f5d6d6;
+        border-right: 1px solid #f5d6d6;
+        width: 2px;
+        position: absolute;
+        top: 0;
+        left: 40px;
+        height: 100%;
+        z-index: 3;
+    }
+}

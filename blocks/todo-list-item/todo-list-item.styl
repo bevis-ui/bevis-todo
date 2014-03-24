@@ -1,0 +1,95 @@
+.todo-list-item {
+
+    font-family: $common['font-family'];
+    font-size: 24px;
+    font-weight: 300;
+
+    position: relative;
+
+    padding: 0 15px 0 0;
+
+    &:not(:last-child) {
+        border-bottom: 1px dotted #adadad;
+    }
+
+    &__text {
+
+        display: inline-block;
+
+        margin-left: 20px;
+        margin-top: 16px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+
+        line-height: 1.2;
+
+        transition: color 0.4s;
+
+        white-space: pre;
+        word-break: break-word;
+
+        color: #4d4d4d;
+    }
+
+    &._completed &__text {
+        text-decoration: line-through;
+        color: #a9a9a9;
+    }
+
+
+    &__edit {
+        display: none;
+    }
+
+    &._editing &__display {
+        display: none;
+    }
+
+    &._editing &__edit {
+        display: block;
+
+        font-family: inherit;
+        font-size: 24px;
+        font-weight: 300;
+
+        width: 505px;
+        padding: 13px 17px 12px 15px;
+        margin: 0 0 0 44px;
+
+        line-height: 1.4em;
+        color: #4d4d4d;
+
+        border: 1px solid #999;
+        box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    &__delete {
+        display: none;
+
+        font-size: 22px;
+
+        position: absolute;
+        right: 20px;
+        top: 17px;
+
+        width: 10px;
+        height: 10px;
+
+        color: #a88a8a;
+        cursor: pointer;
+
+        &:hover {
+            text-shadow: 0 0 1px #000, 0 0 10px rgba(199, 107, 107, 0.8);
+            transform: scale(1.3);
+
+            top: 15px;
+        }
+    }
+
+    &:hover &__delete {
+        display: block;
+    }
+
+}
