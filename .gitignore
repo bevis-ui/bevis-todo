@@ -5,6 +5,8 @@
 */*/.DS_Store
 node_modules/
 build/*/*.*
+static/*
+static/*/*.*
 !build/*/*.bemdecl.js
 test/*
 !test/test.html
