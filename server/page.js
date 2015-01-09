@@ -121,7 +121,7 @@ var Page = inherit({
      */
     createHandler: function (pageName) {
         return function (req, res, next) {
-            new Page('build/' + pageName, pageName + '-page', req, res)
+            new Page('test', 'test', req, res)
                 .handle()
                 .then(
                     function (html) {

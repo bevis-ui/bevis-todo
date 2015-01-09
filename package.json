@@ -1,8 +1,8 @@
 {
-    "name": "bevis-stub",
+    "name": "bevis-todo",
     "private": true,
     "version": "0.0.0",
-    "description": "Project stub based on BEViS",
+    "description": "based on BEViS",
     "scripts": {
         "test": "make test"
     },

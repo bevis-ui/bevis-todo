@@ -1,3 +1,3 @@
 exports.get = function (name) {
-    return require('../configs/current/' + name);
+    return require('../configs/development/' + name);
 };
