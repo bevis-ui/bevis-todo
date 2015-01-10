@@ -13,8 +13,8 @@ app
         req.path = req._parsedUrl.pathname;
         next();
     })
-    .use(assets.middleware())
     .use('/blocks', express.static(__dirname + '/../blocks'))
+    .use(assets.middleware())
     .use(app.router)
     .use(function (req, res) {
         res.statusCode = 404;
@@ -30,7 +30,12 @@ app
 /**
  * Routing
  */
-app.get('/', Page.createHandler('index'));
+app
+    .get('/', Page.createHandler('index'))
+    .get('/:page', function (req, res, next) {
+        var pageName = req.params.page;
+        Page.createHandler(pageName)(req, res, next);
+    });
 
 function startApp(portOrSocket) {
     app

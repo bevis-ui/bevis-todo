@@ -31,20 +31,14 @@ var Page = inherit({
     handle: function () {
         return vow.all([
                 this._getPages(),
-                this._getI18n(),
                 this._getTemplate()
             ])
-            .spread(function (pages, i18n, template) {
-                var i18nKeySets = i18n();
-                pages.setI18n(i18nKeySets);
-
+            .spread(function (pages, template) {
                 return pages.exec(this._pageName, {
                     query: this._query,
                     options: this._getPageOptions(),
                     lang: this._lang
                 }).then(function (btJson) {
-                    // provide the template with an i18n lib
-                    template.lib.i18n = i18nKeySets;
                     return this._applyTemplate(btJson, template);
                 }.bind(this));
             }.bind(this));

@@ -7,19 +7,8 @@ module.exports = function (bt) {
                 text: ctx.getParam('title')
             },
             {
-                elem: 'about',
-                title: 'Architecture Example',
-                links: ctx.getParam('about'),
-                listType: 'horizontal'
-            },
-            {
-                elem: 'quote',
-                author: ctx.getParam('quote').author,
-                text: ctx.getParam('quote').text
-            },
-            {
                 elem: 'resources',
-                title: 'Official Resources',
+                title: '',
                 links: ctx.getParam('resources'),
                 listType: 'vertical'
             }
@@ -33,9 +22,9 @@ module.exports = function (bt) {
         ctx.setContent(text);
     });
 
-//  Группа ссылок 'Architecture Example' и 'Official Resources'
+//  Группа ссылок 'Official Resources'
 
-    bt.match(['sidebar__about', 'sidebar__resources'], function (ctx) {
+    bt.match('sidebar__resources', function (ctx) {
         var title = ctx.getParam('title');
         var links = ctx.getParam('links');
         var listType = ctx.getParam('listType');
@@ -85,30 +74,6 @@ module.exports = function (bt) {
         ctx.setTag('a');
         ctx.setContent(text);
         ctx.setAttr('href', url);
-    });
-
-//  Цитата
-
-    bt.match('sidebar__quote', function (ctx) {
-        var author = ctx.getParam('author');
-        var text = ctx.getParam('text');
-
-        ctx.setContent([
-            {
-                elem: 'quote-text',
-                text: text
-            },
-            {
-                elem: 'quote-author',
-                text: author
-            }
-        ]);
-    });
-
-    bt.match(['sidebar__quote-author', 'sidebar__quote-text'], function (ctx) {
-        var text = ctx.getParam('text');
-
-        ctx.setContent(text);
     });
 
 };

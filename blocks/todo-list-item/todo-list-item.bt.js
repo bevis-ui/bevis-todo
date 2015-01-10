@@ -39,10 +39,10 @@ module.exports = function (bt) {
             }
         ]);
     });
-
+    
     bt.match('todo-list-item__text', function (ctx) {
         ctx.setTag('span');
-        ctx.setContent(ctx.escape(ctx.getParam('text')));
+        ctx.setContent(ctx.escapeHtml(ctx.getParam('text')));
     });
 
     bt.match('todo-list-item__check', function (ctx) {
